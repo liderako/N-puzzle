@@ -1,14 +1,5 @@
 import sys
-
-
-## other file
-import numpy
-
-class Matrix:
-	def __init__(self, _size):
-		self.size = _size
-		self.matrix = numpy.zeros((_size, _size))
-## other file
+from object.Matrix import *
 
 def isInt(x):
     try:
@@ -91,3 +82,5 @@ def 	convertInMatrix(resultRead):
 	# print res
 resultRead = readFile(sys.argv[1])
 convertInMatrix(resultRead)
+# m = Matrix(10)
+# print m.matrix
