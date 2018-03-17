@@ -25,6 +25,17 @@ def 	readFile(nameFile):
 		Error("Read file error.")
 
 def 	deleteSpace(resultRead):
+	if (len(resultRead[0])) == 1 and resultRead[0] == ' ':
+		del resultRead[0]
+	for x in resultRead:
+		try:
+			resultRead.remove('')
+		except:
+			pass
+	try:
+		resultRead.remove('')
+	except:
+		pass
 	string = ''
 	i = 0
 	size = len(resultRead)
@@ -53,6 +64,7 @@ def 	validation(string):
 	if (isInt(string[0])) == False:
 		Error("Error size map")
 	sizeMatrix = int(string[0])
+	print string
 	validationSizeLineHeight(sizeMatrix, string)
 	validationSizeLineWeight(sizeMatrix, string)
 
@@ -87,4 +99,18 @@ def 	convertInMatrix(resultRead):
 	validation(res)
 
 resultRead = readFile(sys.argv[1])
+# i = 0
+# while i > 0
+
+# for x in resultRead:
+# 	if (x == ''):
+# 		resultRead.remove(x)
+# for x in resultRead:
+# 	if (x == ''):
+# 		resultRead.remove(x)
+# while resultRead.find(' '):
+# 	resultRead.remove('')
+
+print resultRead
 convertInMatrix(resultRead)
+
