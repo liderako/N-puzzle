@@ -1,8 +1,28 @@
 import sys
 from object.Matrix import *
-from libft.Error import *
-from libft.readFile import *
-from libft.isInt import *
+# from libft.Error import *
+# from libft.readFile import *
+# from libft.isInt import *
+
+def 	Error(string):
+	print string
+	sys.exit(1)
+
+def isInt(x):
+    try:
+        int(x)
+        return True
+    except ValueError:
+        return False
+    return True
+
+def 	readFile(nameFile):
+	try:
+		f = open(nameFile, 'r')
+		res = f.read()
+		return res.split('\n')
+	except:
+		Error("Read file error.")
 
 def 	deleteSpace(resultRead):
 	string = ''
@@ -13,7 +33,14 @@ def 	deleteSpace(resultRead):
 			if ((len(x)) == 1 and x[0] == ' '):
 				pass
 			else:
-				string = string + x
+				old = '0'
+				for k in x:
+					if k == ' ' and old != ' ':
+						string = string + k
+						old = ' '
+					elif k != ' ':
+						old = '0'
+						string = string + k
 				if (i + 1 != size):
 					string = string + "\n"
 			i += 1
