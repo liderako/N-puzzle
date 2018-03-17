@@ -10,6 +10,14 @@ class Matrix:
 		self.matrix = numpy.zeros((_size, _size))
 ## other file
 
+def isInt(x):
+    try:
+        int(x)
+        return True
+    except ValueError:
+        return False
+    return True
+
 def 	printError(string):
 	print string
 	sys.exit(1)
@@ -41,10 +49,32 @@ def 	deleteSpace(resultRead):
 		printError("Error in deleteSpace.")
 
 def 	validation(string):
-	if (len(string[0])) != 1:
+	if (isInt(string[0])) == False:
 		printError("Error size map")
-	# for c in string:
-		# 
+	sizeMatrix = int(string[0])
+	# for i in string:
+	# 	for j in i:
+	# 		i.remove('')
+	# 		# print j
+	validationSizeLineHeight(sizeMatrix, string)
+	validationSizeLineWeight(sizeMatrix, string)
+
+def 	validationSizeLineHeight(sizeMatrix, string):
+	start = 0
+	y = 0
+	for c in string:
+		if (start == 0):
+			start += 1
+		else:
+			if ((len(c)) >= 1 and c[0] != ' '):
+				y += 1
+			elem = c.split(' ')
+			if (y > sizeMatrix):
+				printError("Too big hight matrix")
+
+def 	validationSizeLineWeight(sizeMatrix, string):
+	pass
+
 def 	convertInMatrix(resultRead):
 	i = 0
 	for c in resultRead:
@@ -58,6 +88,6 @@ def 	convertInMatrix(resultRead):
 		i += 1
 	res = deleteSpace(resultRead)
 	validation(res)
-	print res
+	# print res
 resultRead = readFile(sys.argv[1])
 convertInMatrix(resultRead)
