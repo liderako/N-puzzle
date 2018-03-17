@@ -1,25 +1,8 @@
 import sys
 from object.Matrix import *
-
-def isInt(x):
-    try:
-        int(x)
-        return True
-    except ValueError:
-        return False
-    return True
-
-def 	printError(string):
-	print string
-	sys.exit(1)
-
-def 	readFile(nameFile):
-	try:
-		f = open(nameFile, 'r')
-		res = f.read()
-		return res.split('\n')
-	except:
-		printError("Read file error.")
+from libft.Error import *
+from libft.readFile import *
+from libft.isInt import *
 
 def 	deleteSpace(resultRead):
 	string = ''
@@ -37,11 +20,11 @@ def 	deleteSpace(resultRead):
 		string = string.split('\n')
 		return string
 	except:
-		printError("Error in deleteSpace.")
+		Error("Error in deleteSpace.")
 
 def 	validation(string):
 	if (isInt(string[0])) == False:
-		printError("Error size map")
+		Error("Error size map")
 	sizeMatrix = int(string[0])
 	validationSizeLineHeight(sizeMatrix, string)
 	validationSizeLineWeight(sizeMatrix, string)
@@ -57,7 +40,7 @@ def 	validationSizeLineHeight(sizeMatrix, string):
 				y += 1
 			elem = c.split(' ')
 			if (y > sizeMatrix):
-				printError("Too big hight matrix")
+				Error("Too big hight matrix")
 
 def 	validationSizeLineWeight(sizeMatrix, string):
 	pass
@@ -71,7 +54,7 @@ def 	convertInMatrix(resultRead):
 		elif (res == 0):
 			resultRead[i] = " "
 		else:
-			printError("Error string in #")
+			Error("Error string in #")
 		i += 1
 	res = deleteSpace(resultRead)
 	validation(res)
