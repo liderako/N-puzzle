@@ -1,4 +1,5 @@
 import sys
+import copy
 from object.Matrix import *
 # from libft.Error import *
 # from libft.readFile import *
@@ -68,7 +69,8 @@ def 	validation(string):
 	validationSizeLineWeight(sizeMatrix, string)
 	validationOnlyDigital(string)
 	validationNegative(string)
-	validationMapDouble(sizeMatrix, string)
+	validationMaxInt(sizeMatrix, copy.copy(string))
+	validationMapDouble(sizeMatrix, copy.copy(string))
 
 def 	validationSizeLineHeight(sizeMatrix, string):
 	start = 0
@@ -110,6 +112,26 @@ def 	validationNegative(string):
 			i = int(c)
 			if i < 0:
 				Error("Error is negative")
+
+def 	validationMaxInt(sizeMatrix, s):
+	del s[0]
+	maxIntInMatrix = sizeMatrix * sizeMatrix - 1
+	for x in s:
+		for c in x:
+			i = int(c)
+			if (i > maxIntInMatrix):
+				Error("too big digital in Matrix")
+
+def 	validationMapDouble(sizeMatrix, s):
+	del s[0]
+	array = numpy.zeros(sizeMatrix * sizeMatrix)
+	i = 0
+	for x in s:
+		for c in x:
+			i = int(c)
+			if array[i] == -1:
+				Error("double digital")
+			array[i] -= 1
 
 def 	convertInMatrix(resultRead):
 	i = 0
