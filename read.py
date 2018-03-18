@@ -66,6 +66,9 @@ def 	validation(string):
 	sizeMatrix = int(string[0])
 	validationSizeLineHeight(sizeMatrix, string)
 	validationSizeLineWeight(sizeMatrix, string)
+	validationOnlyDigital(string)
+	validationNegative(string)
+	validationMapDouble(sizeMatrix, string)
 
 def 	validationSizeLineHeight(sizeMatrix, string):
 	start = 0
@@ -94,6 +97,19 @@ def 	validationSizeLineWeight(sizeMatrix, string):
 			y += 1
 			if size != sizeMatrix:
 				Error("Error size line Weight")
+
+def 	validationOnlyDigital(string):
+	for x in string:
+		for c in x:
+			if ((isInt(c)) == False):
+				Error("Error is not digital")
+
+def 	validationNegative(string):
+	for x in string:
+		for c in x:
+			i = int(c)
+			if i < 0:
+				Error("Error is negative")
 
 def 	convertInMatrix(resultRead):
 	i = 0
