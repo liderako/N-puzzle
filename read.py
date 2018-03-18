@@ -81,7 +81,19 @@ def 	validationSizeLineHeight(sizeMatrix, string):
 				Error("Too big hight matrix")
 
 def 	validationSizeLineWeight(sizeMatrix, string):
-	pass
+	start = 0
+	y = 1
+	for c in string:
+		if start == 0:
+			start += 1
+		else:
+			c = c.strip()
+			s = c.split(' ')
+			string[y] = s
+			size = len(s)
+			y += 1
+			if size != sizeMatrix:
+				Error("Error size line Weight")
 
 def 	convertInMatrix(resultRead):
 	i = 0
@@ -110,7 +122,7 @@ def 	createMatrix(list):
 			start += 1
 			pass
 		else:
-			s = x.split(' ')
+			s = x
 			x = 0
 			for n in s:
 				m.matrix[y][x] = int(n)
@@ -120,4 +132,4 @@ def 	createMatrix(list):
 
 resultRead = readFile(sys.argv[1])
 m = convertInMatrix(resultRead)
-print int(m.matrix[0][0])
+print m.matrix
