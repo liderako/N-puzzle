@@ -64,7 +64,6 @@ def 	validation(string):
 	if (isInt(string[0])) == False:
 		Error("Error size map")
 	sizeMatrix = int(string[0])
-	print string
 	validationSizeLineHeight(sizeMatrix, string)
 	validationSizeLineWeight(sizeMatrix, string)
 
@@ -97,20 +96,28 @@ def 	convertInMatrix(resultRead):
 		i += 1
 	res = deleteSpace(resultRead)
 	validation(res)
+	m = createMatrix(res)
+	return m
+
+def 	createMatrix(list):
+	m = Matrix(int(list[0]))
+	sizeX = len(list[1])
+	y = 0
+	x = 0
+	start = 0
+	for x in list:
+		if start == 0:
+			start += 1
+			pass
+		else:
+			s = x.split(' ')
+			x = 0
+			for n in s:
+				m.matrix[y][x] = int(n)
+				x += 1
+			y += 1
+	return m
 
 resultRead = readFile(sys.argv[1])
-# i = 0
-# while i > 0
-
-# for x in resultRead:
-# 	if (x == ''):
-# 		resultRead.remove(x)
-# for x in resultRead:
-# 	if (x == ''):
-# 		resultRead.remove(x)
-# while resultRead.find(' '):
-# 	resultRead.remove('')
-
-print resultRead
-convertInMatrix(resultRead)
-
+m = convertInMatrix(resultRead)
+print int(m.matrix[0][0])
