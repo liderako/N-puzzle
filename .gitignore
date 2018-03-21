@@ -1,3 +1,2 @@
-read.pyc
 .DS_Store
-object/*.pyc
+*.pyc
