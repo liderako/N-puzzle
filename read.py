@@ -122,17 +122,21 @@ def 	createMatrix(list):
 
 resultRead = readFile(sys.argv[1])
 m = convertInMatrix(resultRead)
-print m.matrix
+#print m.matrix
+
+
+'''
 def     search_zero_indices(matryx):
         for i,j in enumerate(matryx):
                 for k,l in enumerate(j):
                         if l==0:
-                                print ("Index:" + str(i) + " " + str(k))
-                                return i,k
+				return i,k
+'''
 #print np.nanargmin(m.matrix, axis=None)
 
 row,column = search_zero_indices(m.matrix)
 print check_solve(m.matrix)
+
 '''
 m.move_right(row,column)
 print m.matrix
