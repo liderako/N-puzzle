@@ -1,5 +1,3 @@
-# from IRules import *
-
 class 	Rules:
 
 	def 	__init__( self ):
@@ -18,6 +16,6 @@ class 	Rules:
 		print "State getH"
 		return 1
 
-	# Checks whether the state is finite.
+	# Checks whether the state is finished.
 	def isTerminate( self, state ):
 		return False;

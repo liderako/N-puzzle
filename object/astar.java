@@ -30,6 +30,7 @@ public class Astar<TState extends State, TRules extends Rules<TState>> {
             open.remove(x);
             close.add(x.hashCode());
             List<TState> neighbors = rules.getNeighbors(x);
+            
             for (TState neighbor : neighbors) {
                 if (close.contains(neighbor.hashCode())) {
                     continue;
@@ -48,6 +49,7 @@ public class Astar<TState extends State, TRules extends Rules<TState>> {
                     neighbor.setG(g);
                 }
             }
+
         }
         return null;
     }

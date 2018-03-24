@@ -1,25 +1,25 @@
 class 	State:
 
-	def __init__(self):
-		pass
+	def __init__( self, matrix ):
+		self.matrix = matrix
 
-	def getG(self):
+	def getG( self ):
 		return self.g;
 
-	def getF(self):
+	def getF( self ):
 		return self.g + self.h;
 
-	def getH(self):
+	def getH( self ):
 		return self.h
 
-	def setH(self, h):
+	def setH( self, h ):
 		self.h = h;
 
-	def setG(self, g):
+	def setG( self, g ):
 		self.g = g;
 
-	def getStateParent(self):
+	def getStateParent( self ):
 		return self.stateParent
 
-	def setStateParent(self, stateParent):
+	def setStateParent( self, stateParent ):
 		self.stateParent = stateParent;

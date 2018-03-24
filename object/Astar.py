@@ -12,33 +12,33 @@ class 	Astar:
 # Applies the algorithm A * to find the shortest path to the terminal state from the indicated.
 	def 	search( self, startState ):
 		# return @param a sequence of states from a given state to a terminal state.
-
 		closeList = list()
 		openList = list()
 		openList.append( startState )
 		startState.setG( 0 )
 		startState.setH( self.rules.getH( startState ) )
 
-		while (len(openList) != 0):
-			x = self.getStateWithMinF( openList )
-			print "before if"
-			if self.rules.isTerminate( x ):
+		while ( len( openList ) != 0 ):
+			xState,i = self.getStateWithMinF( openList )
+			if self.rules.isTerminate( xState ):
 				# closedStates = len(closeList)
-				return self.completeSolution(x)
-			print "after if"
-			break ;
-			# openList.remove(x)
+				return self.completeSolution( xState )
+			openList.pop( i )
+			closeList.append( xState )
+			neighborsList = self.rules.getHeighbors( xState )
 
 #  Finds the vertex in the openList with the lowest weight value.
 	def 	getStateWithMinF( self, openList ):
 		print "getStateWithMinF"
 		min = -sys.maxsize - 1
 		res = State()
+		i = 0
 		for state in openList:
-			if (state.getH() < min):
+			if state.getH() < min:
 				min = state.getH()
 				res = state
-		return res
+				i += 1
+		return res, i
 
 # It is the sequence of states passed from the initial state to the final one.
 	def 	completeSolution( self, terminate ):

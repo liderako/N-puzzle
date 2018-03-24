@@ -42,7 +42,7 @@ public interface Rules<TState extends State> {
 	int getH(TState state);
 
 	/**
-	 * Проверяет состояние, не является ли оно конечным.
+	 *  
 	 * 
 	 * @param state
 	 *            состояние.
