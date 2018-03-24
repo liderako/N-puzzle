@@ -6,7 +6,7 @@ class 	Astar:
 
 # Creates an object to find the terminal state by the specified rules.
 	def 	__init__( self, rules ):
-		# self.min = -sys.maxsize - 1
+		self.closedStates = 0
 		self.rules = rules
 
 # Applies the algorithm A * to find the shortest path to the terminal state from the indicated.
@@ -23,9 +23,11 @@ class 	Astar:
 			x = self.getStateWithMinF( openList )
 			print "before if"
 			if self.rules.isTerminate( x ):
+				# closedStates = len(closeList)
 				return self.completeSolution(x)
 			print "after if"
-			openList.pop(x)
+			break ;
+			# openList.remove(x)
 
 #  Finds the vertex in the openList with the lowest weight value.
 	def 	getStateWithMinF( self, openList ):

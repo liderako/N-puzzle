@@ -20,4 +20,4 @@ class 	Rules:
 
 	# Checks whether the state is finite.
 	def isTerminate( self, state ):
-		return bool
+		return False;
