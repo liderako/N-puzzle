@@ -16,14 +16,12 @@ class 	Astar:
 		closeList = list()
 		openList = list()
 		openList.append( startState )
-		openList.append( startState )
-		openList.append( startState )
 		startState.setG( 0 )
 		startState.setH( self.rules.getH( startState ) )
-		
+
 		while (len(openList) != 0):
 			x = self.getStateWithMinF( openList )
-			"before if"
+			print "before if"
 			if self.rules.isTerminate( x ):
 				return self.completeSolution(x)
 			print "after if"
@@ -31,8 +29,9 @@ class 	Astar:
 
 #  Finds the vertex in the openList with the lowest weight value.
 	def 	getStateWithMinF( self, openList ):
+		print "getStateWithMinF"
 		min = -sys.maxsize - 1
-		res = list
+		res = State()
 		for state in openList:
 			if (state.getH() < min):
 				min = state.getH()
