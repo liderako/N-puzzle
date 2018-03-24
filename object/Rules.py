@@ -1,26 +1,23 @@
-from abc import ABCMetas
+# from IRules import *
 
-class IRules:
+class 	Rules:
 
-	#  Returns a list of states that can be migrated from the status field.
-	#  @param currentState - The current state for which the neighboring are revealed
-	@abstractmethod
-	def getHeighbors( self, currentState ):
+	def 	__init__( self ):
 		pass
+
+	def getHeighbors( self, currentState ):
+		print "State getHeighbors"
 		# @return the list of states in which the transition from specified state.
 	
 	# Returns the distance between the specified states.
-	@abstractmethod
 	def getDistance( self, stateA, stateB ):
-		pass
+		print "State getDistance"
 
 	#  Calculates a heuristic estimate of the distance from the specified state to the final.
-	@abstractmethod
-	def getH( state ):
-		pass
+	def getH( self, state ):
+		print "State getH"
+		return 1
 
 	# Checks whether the state is finite.
-	@abstractmethod
-	def isTerminate( state ):
-		# return bool
-		pass
+	def isTerminate( self, state ):
+		return bool

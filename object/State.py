@@ -1,5 +1,3 @@
-# from abc import ABCMetas
-
 class 	State:
 
 	def __init__(self):
@@ -20,8 +18,8 @@ class 	State:
 	def setG(self, g):
 		self.g = g;
 
-	def getParent(self):
-		return self.parent
+	def getStateParent(self):
+		return self.stateParent
 
-	def setParent(self, parent):
-		self.parent = parent;
+	def setStateParent(self, stateParent):
+		self.stateParent = stateParent;
