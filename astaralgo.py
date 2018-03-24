@@ -9,7 +9,6 @@ def check_row_right(matrix,row,column,size):
     global flag,max
     val = matrix[row][column]
     while(column < size):
-        print matrix[row][column]
         if matrix[row][column] != val:
             if matrix[row][column] == 0 and (column - 1) >= 0:
                 if matrix[row][column - 1] == max:
@@ -23,7 +22,6 @@ def check_row_left(matrix,row,column,size):
     global flag,max,sz
     val = matrix[row][column]
     while(column >= size):
-        print matrix[row][column]
         if matrix[row][column] != val:
             if matrix[row][column] == 0 and (column + 1) < sz:
                 if matrix[row][column + 1] == max:
@@ -37,7 +35,6 @@ def check_column_down(matrix,row,column,size):
     global flag,max
     val = matrix[row][column]
     while(row < size):
-        print matrix[row][column]
         if matrix[row][column] != val:
             if matrix[row][column] == 0 and (row - 1) >= 0:
                 if matrix[row - 1][column] == max:
@@ -51,7 +48,6 @@ def check_column_up(matrix,row,column,size):
     global flag,max,sz
     val = matrix[row][column]
     while(row > size):
-        print matrix[row][column]
         if matrix[row][column] != val:
             if matrix[row][column] == 0 and (row + 1) < sz:
                 if matrix[row + 1][column] == max:
