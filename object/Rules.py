@@ -16,7 +16,7 @@ class 	Rules:
 		def get_index(matrix, digit):
 			for row,j in enumerate(matrix):
 				for column,l in enumerate(j):
-					if l==digit:
+					if l == digit:
 						return row, column
 		ind_st =  get_index(state, digit)
 		ind_cor = get_index(correct_state, digit)
