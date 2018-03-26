@@ -2,7 +2,7 @@ class 	Rules:
 
 	def 	__init__( self ):
 		pass
-
+###
 	def getNeighbors( self, currentState ):
 		print "State getHeighbors"
 		# @return the list of states in which the transition from specified state.
