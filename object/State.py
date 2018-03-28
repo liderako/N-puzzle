@@ -24,3 +24,6 @@ class 	State:
 
 	def setStateParent( self, stateParent ):
 		self.stateParent = stateParent;
+
+	def getMatrixArray( self ):
+		return self.matrix.matrix

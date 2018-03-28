@@ -3,7 +3,6 @@
 import sys
 from object.Matrix import *
 import numpy as np
-#from read import *
 
 def check_row_right(matrix,row,column,size):
     global flag,max
