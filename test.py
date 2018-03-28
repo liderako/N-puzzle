@@ -9,6 +9,7 @@ from object.State import *
 
 resultRead = readFile(sys.argv[1])
 m = convertInMatrix(resultRead)
+sOrigin = State(m)
 #print m.matrix
 
 
@@ -24,13 +25,13 @@ def     search_zero_indices(matryx):
 #row,column = search_zero_indices(m.matrix)
 #print check_solve(m.matrix)
 #print fill_matrix(m.matrix)
-matrix_correct = fill_matrix(m.matrix)
+#matrix_correct = fill_matrix(m.matrix)
 #print m.matrix
-print matrix_correct
-print g_coef_count(matrix_correct, m.matrix)
-digit = 3
-rules = Rules()
-print rules.getH(m.matrix, matrix_correct, digit)
+#print matrix_correct
+#print g_coef_count(matrix_correct, m.matrix)
+#digit = 3
+rules = Rules(sOrigin)
+print rules.getH(sOrigin)
 '''
 m.move_right(row,column)
 print m.matrix

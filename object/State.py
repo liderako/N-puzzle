@@ -1,3 +1,4 @@
+from Matrix import *
 class 	State:
 
 	def __init__( self, matrix ):
