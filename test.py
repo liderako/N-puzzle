@@ -34,6 +34,7 @@ rules = Rules(sOrigin)
 print "test getH rules =",rules.getH(sOrigin)
 print "Need to false =", rules.isTerminate(sOrigin)
 print "Need to true =", rules.isTerminate(rules.stateCorrect)
+rules.getNeighbors(sOrigin)
 # print (rules.getDistance(sOrigin))
 
 

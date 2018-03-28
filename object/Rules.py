@@ -10,8 +10,20 @@ class 	Rules:
         self.stateCorrect = State( m )
 
     def getNeighbors( self, stateCurrent ):
-        print "State getHeighbors"
+        stateList = list()
+
+        # for exemple
+        i  = 0
+        while i < 3:
+            mObject = Matrix(10)
+            stateObject = State()
+            print stateObject.getMatrixArray(), "\n"
+            stateList.append( stateObject )
+            i += 1
+        ## end exemple
+
         # @return the list of states in which the transition from specified state.
+        return stateList
 
     # Returns the distance between the specified states.
     def getDistance( self, stateStart, stateEnd=0 ):
