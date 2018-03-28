@@ -32,6 +32,8 @@ def     search_zero_indices(matryx):
 #digit = 3
 rules = Rules(sOrigin)
 print rules.getH(sOrigin)
+print (rules.getDistance(sOrigin))
+
 '''
 m.move_right(row,column)
 print m.matrix

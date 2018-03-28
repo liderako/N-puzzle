@@ -14,7 +14,9 @@ class 	Rules:
         # @return the list of states in which the transition from specified state.
 
     # Returns the distance between the specified states.
-    def getDistance( self, stateStart, stateEnd ):
+    def getDistance( self, stateStart, stateEnd=0 ):
+        if stateEnd == 0:
+            stateEnd = self.stateCorrect
         def gCoefCount( matrixStart, matrixEnd ):
             gCoef = 0    
             for i,j in enumerate( matrixStart ):
@@ -22,7 +24,7 @@ class 	Rules:
                     if matrixStart[i][k] != matrixEnd[i][k]:
                         gCoef += 1
             return gCoef
-        return gCoefCount( stateStart.matrix, stateEnd.matrix)
+        return gCoefCount( stateStart.matrix.matrix, stateEnd.matrix.matrix)
 
     # Calculates a heuristic estimate of the distance from the specified state to the final.
     def getH( self, state ):
