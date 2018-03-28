@@ -4,9 +4,12 @@ import numpy as np
 from astaralgo import *
 from fcoefficientsearch import *
 from read import *
+from object.Rules import *
+from object.State import *
 
 resultRead = readFile(sys.argv[1])
 m = convertInMatrix(resultRead)
+sOrigin = State(m)
 #print m.matrix
 
 
@@ -20,11 +23,17 @@ def     search_zero_indices(matryx):
 #print np.nanargmin(m.matrix, axis=None)
 
 #row,column = search_zero_indices(m.matrix)
-print check_solve(m.matrix)
+#print check_solve(m.matrix)
 #print fill_matrix(m.matrix)
-matrix_correct = fill_matrix(m.matrix)
-print matrix_correct
-print g_coef_count(matrix_correct, m.matrix)
+#matrix_correct = fill_matrix(m.matrix)
+#print m.matrix
+#print matrix_correct
+#print g_coef_count(matrix_correct, m.matrix)
+#digit = 3
+rules = Rules(sOrigin)
+print rules.getH(sOrigin)
+print (rules.getDistance(sOrigin))
+
 '''
 m.move_right(row,column)
 print m.matrix

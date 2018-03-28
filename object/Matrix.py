@@ -21,3 +21,5 @@ class Matrix:
 		buf = self.matrix[row][column]
 		self.matrix[row][column] = self.matrix[row + 1][column]
 		self.matrix[row + 1][column] = buf
+	def setMatrix(self, matrix):
+		self.matrix = matrix
