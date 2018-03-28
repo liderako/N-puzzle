@@ -9,7 +9,7 @@ class 	Rules:
         m.setMatrix( fill_matrix( startState.getMatrixArray() ) )
         self.stateCorrect = State( m )
 
-    def getNeighbors( self, currentState ):
+    def getNeighbors( self, stateCurrent ):
         print "State getHeighbors"
         # @return the list of states in which the transition from specified state.
 
