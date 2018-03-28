@@ -1,13 +1,13 @@
 import sys
 from State import *
 from fcoefficientsearch import *
+from is_terminate import *
 
 class 	Rules:
-
     def __init__( self, startState ):
-        m = Matrix(startState.matrix.size)
-        m.setMatrix(fill_matrix(startState.matrix.matrix))
-        self.stateCorrect = State(m)
+        m = Matrix( startState.matrix.size )
+        m.setMatrix( fill_matrix( startState.getMatrixArray() ) )
+        self.stateCorrect = State( m )
 
     def getNeighbors( self, currentState ):
         print "State getHeighbors"
@@ -24,24 +24,24 @@ class 	Rules:
                     if matrixStart[i][k] != matrixEnd[i][k]:
                         gCoef += 1
             return gCoef
-        return gCoefCount( stateStart.matrix.matrix, stateEnd.matrix.matrix)
+        return gCoefCount( stateStart.getMatrixArray(), stateEnd.getMatrixArray() )
 
     # Calculates a heuristic estimate of the distance from the specified state to the final.
     def getH( self, state ):
-        def get_index(matrix, digit):
-            for row,j in enumerate(matrix):
-                for column,l in enumerate(j):
+        def getIndex( matrix, digit ):
+            for row, j in enumerate( matrix ):
+                for column,l in enumerate( j ):
                     if l == digit:
                         return row, column
-        size = len(state.matrix.matrix)
+        size = len( state.getMatrixArray() )
         max = size * size
         h = 0
-        for digit in range(max):
-            indSt =  get_index(state.matrix.matrix, digit)
-            indCor = get_index(self.stateCorrect.matrix.matrix, digit)
-            h += abs(indSt[0] - indCor[0]) + abs(indSt[1] -indCor[1])
+        for digit in range( max ):
+            indSt = getIndex( state.getMatrixArray(), digit )
+            indCor = getIndex( self.stateCorrect.getMatrixArray(), digit )
+            h += abs( indSt[0] - indCor[0] ) + abs( indSt[1] - indCor[1] )
         return h
     
     # Checks whether the state is finished.
     def isTerminate( self, state ):
-        return False;
+        return check_solve( state.getMatrixArray() );

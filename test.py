@@ -1,7 +1,7 @@
 import sys
 from object.Matrix import *
 import numpy as np
-from astaralgo import *
+from is_terminate import *
 from fcoefficientsearch import *
 from read import *
 from object.Rules import *
@@ -31,8 +31,11 @@ def     search_zero_indices(matryx):
 #print g_coef_count(matrix_correct, m.matrix)
 #digit = 3
 rules = Rules(sOrigin)
-print rules.getH(sOrigin)
-print (rules.getDistance(sOrigin))
+print "test getH rules =",rules.getH(sOrigin)
+print "Need to false =", rules.isTerminate(sOrigin)
+print "Need to true =", rules.isTerminate(rules.stateCorrect)
+# print (rules.getDistance(sOrigin))
+
 
 '''
 m.move_right(row,column)
