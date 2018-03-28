@@ -6,21 +6,28 @@ class 	Rules:
 	def getNeighbors( self, currentState ):
 		print "State getHeighbors"
 		# @return the list of states in which the transition from specified state.
-	
-	# Returns the distance between the specified states.
-	def getDistance( self, stateA, stateB ):
-		print "State getDistance"
 
-	#  Calculates a heuristic estimate of the distance from the specified state to the final.
-	def getH( self, state, correct_state, digit ):
+	# Returns the distance between the specified states.
+	def getDistance( self, stateStart, stateEnd ):
+		def gCoefCount( matrixStart, matrixEnd ):
+    		gCoef = 0    
+			for i,j in enumerate( matrixStart ):
+                for k,l in enumerate( j ):
+                        if matrixStart[i][k] != matrixEnd[i][k]:
+                            gCoef += 1
+            return gCoef
+        return gCoefCount( stateStart.matrix, stateEnd.matrix)
+
+	 # Calculates a heuristic estimate of the distance from the specified state to the final.
+	def getH( self, state ):
 		def get_index(matrix, digit):
 			for row,j in enumerate(matrix):
 				for column,l in enumerate(j):
 					if l == digit:
 						return row, column
-		ind_st =  get_index(state, digit)
-		ind_cor = get_index(correct_state, digit)
-		h = abs(ind_st[0] - ind_cor[0]) + abs(ind_st[1] -ind_cor[1])
+		indSt =  get_index(state, digit)
+		indCor = get_index(correctState, digit)
+		h = abs(indSt[0] - indCor[0]) + abs(indSt[1] -indCor[1])
 		return h
 
 	# Checks whether the state is finished.
