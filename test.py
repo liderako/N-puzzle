@@ -31,10 +31,12 @@ def     search_zero_indices(matryx):
 #print g_coef_count(matrix_correct, m.matrix)
 #digit = 3
 rules = Rules(sOrigin)
-print "test getH rules =",rules.getH(sOrigin)
-print "Need to false =", rules.isTerminate(sOrigin)
-print "Need to true =", rules.isTerminate(rules.stateCorrect)
+#print "test getH rules =",rules.getH(sOrigin)
+#print "Need to false =", rules.isTerminate(sOrigin)
+#print "Need to true =", rules.isTerminate(rules.stateCorrect)
+
 rules.getNeighbors(sOrigin)
+print rules.stateCorrect.getMatrixArray()
 # print (rules.getDistance(sOrigin))
 
 

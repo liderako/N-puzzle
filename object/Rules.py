@@ -16,8 +16,8 @@ class 	Rules:
         i  = 0
         while i < 3:
             mObject = Matrix(10)
-            stateObject = State()
-            print stateObject.getMatrixArray(), "\n"
+            stateObject = State(mObject)
+            #print stateObject.getMatrixArray(), "\n"
             stateList.append( stateObject )
             i += 1
         ## end exemple
