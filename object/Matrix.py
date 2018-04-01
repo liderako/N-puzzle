@@ -4,6 +4,7 @@ class Matrix:
 	def __init__(self, _size):
 		self.size = _size
 		self.matrix = numpy.zeros((_size, _size))
+		self.matrix[4][1] = 3
 
 	def move_right(self,row,column):
 		buf = self.matrix[row][column]

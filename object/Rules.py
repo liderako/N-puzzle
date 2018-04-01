@@ -11,21 +11,81 @@ class 	Rules:
 
     def getNeighbors( self, stateCurrent ):
         stateList = list()
-
+        stateList1 = list()
+        def getIndexzero( matrix ):
+            for row, j in enumerate( matrix ):
+                for column,l in enumerate( j ):
+                    if l == 0:
+                        return row, column
         # for exemple
         i  = 0
         while i < 3:
             mObject = Matrix(10)
             stateObject = State(mObject)
             #print stateObject.getMatrixArray(), "\n"
-            stateList.append( stateObject )
+            stateList1.append( stateObject )
             i += 1
         ## end exemple
-
-        # @return the list of states in which the transition from specified state.
+        sz = stateCurrent.matrix.size - 1
+#        print stateCurrent.getMatrixArray()
+        indZero = getIndexzero( stateCurrent.getMatrixArray() )
+        print indZero
+        arr = Matrix( stateCurrent.matrix.size )
+        matr = State( arr )
+#        matr = State( stateCurrent.getMatrixArray() )
+        print matr.getMatrixArray()
+#        matr[4][1] = 3
+        #matr = stateCurrent.getMatrixArray()[:]
+        print "NewMatr"
+        print matr.getMatrixArray()
+        
         return stateList
 
-    # Returns the distance between the specified states.
+#        new_matrix = 
+#        print arr.getMatrixArray()
+        if (0 < indZero[0] < sz) and (0 < indZero[1] < sz):
+            stateList.append( new_matrix.move_right(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_left(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_up(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_down(indZero[0], indZero[1]) )
+# at left column
+        elif (0 < indZero[0] < sz) and (indZero[1] == 0):
+            stateList.append( new_matrix.move_right(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_up(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_down(indZero[0], indZero[1]) )
+# at right column
+        elif (0 < indZero[0] < sz) and (indZero[1] == sz):
+            stateList.append( new_matrix.move_left(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_up(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_down(indZero[0], indZero[1]) )
+# at top row
+        elif (indZero[0] == 0) and (0 < indZero[1] < sz):
+            stateList.append( new_matrix.move_right(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_left(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_down(indZero[0], indZero[1]) )
+# at down row
+        elif (indZero[0] == sz) and (0 < indZero[1] < sz):
+            stateList.append( new_matrix.move_right(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_left(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_up(indZero[0], indZero[1]) )
+# at left top corner
+        elif (indZero[0] == 0) and (indZero[1] == 0):
+            stateList.append( new_matrix.move_right(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_down(indZero[0], indZero[1]) )
+# at right top corner
+        elif (indZero[0] == 0) and (indZero[1] == sz):
+            stateList.append( new_matrix.move_left(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_down(indZero[0], indZero[1]) )
+# at left down corner
+        elif (indZero[0] == sz) and (indZero[1] == 0):
+            stateList.append( new_matrix.move_right(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_up(indZero[0], indZero[1]) )
+# at right down corner
+        elif (indZero[0] == sz) and (indZero[1] == sz):
+            stateList.append( new_matrix.move_up(indZero[0], indZero[1]) )
+            stateList.append( new_matrix.move_left(indZero[0], indZero[1]) )
+        return stateList
+
     def getDistance( self, stateStart, stateEnd=0 ):
         if stateEnd == 0:
             stateEnd = self.stateCorrect
