@@ -17,22 +17,14 @@ astar = Astar(rules)
 
 a = astar.search(sOrigin)
 print a
-# test = rules.getNeighbors(sOrigin)
-# for x in test:
-# 	print x.getMatrixArray()
-# 	print "\n"
-# test = search()
 
-'''
-m.move_right(row,column)
-print m.matrix
-row,column = search_zero_indices(m.matrix)
-m.move_up(row,column)
-print m.matrix
-row,column = search_zero_indices(m.matrix)
-m.move_left(row,column)
-print m.matrix
-row,column = search_zero_indices(m.matrix)
-m.move_down(row,column)
-print m.matrix
-'''
+# a = State(Matrix(3))
+
+# listState = list()
+
+# listState.append(a)
+
+# a.setH(10)
+
+# for x in listState:
+# 	print x.getH()

@@ -24,6 +24,7 @@ class   Rules:
 
     def getNeighbors( self, stateCurrent ):
         stateList = list()
+
         def getIndexzero( matrix ):
             for row, j in enumerate( matrix ):
                 for column,l in enumerate( j ):
@@ -72,12 +73,6 @@ class   Rules:
         elif (indZero[0] == sz) and (indZero[1] == sz):
             stateList.append(self.copyState(copy.deepcopy(stateCurrent), indZero, "up"))
             stateList.append(self.copyState(copy.deepcopy(stateCurrent), indZero, "left"))
-        
-        for x in stateList:
-            gX = self.getDistance(copy.deepcopy(stateCurrent))
-            h = self.getH(x)
-            x.setG(gX)
-            x.setH(h)
         return stateList
 
     def getDistance( self, stateStart, stateEnd=0 ):
@@ -92,7 +87,6 @@ class   Rules:
             return gCoef
         return gCoefCount( stateStart.getMatrixArray(), stateEnd.getMatrixArray() )
 
-    # Calculates a heuristic estimate of the distance from the specified state to the final.
     def getH( self, state ):
         def getIndex( matrix, digit ):
             for row, j in enumerate( matrix ):
@@ -107,7 +101,22 @@ class   Rules:
             indCor = getIndex( self.stateCorrect.getMatrixArray(), digit )
             h += abs( indSt[0] - indCor[0] ) + abs( indSt[1] - indCor[1] )
         return h
-    
-    # Checks whether the state is finished.
+
     def isTerminate( self, state ):
-        return check_solve( state.getMatrixArray() );
+        return self.find(state, self.stateCorrect)
+
+    def     find(self, state, stateCorrect):
+        res = 0
+        sizeLine = state.getMatrixObject().getSize()
+        size = sizeLine * sizeLine
+        s = state.getMatrixArray()
+        tmp = stateCorrect.getMatrixArray()
+        i = 0
+        while (i < sizeLine):
+            j = 0
+            while j < sizeLine:
+                if (s[i][j] != tmp[i][j]):
+                    return False
+                j += 1
+            i += 1
+        return (True)

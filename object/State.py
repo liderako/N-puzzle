@@ -24,10 +24,10 @@ class 	State:
 		self.g = g;
 
 	def getStateParent( self ):
-		return self.stateParent
+		return self.parent
 
 	def setStateParent( self, stateParent ):
-		self.stateParent = stateParent;
+		self.parent = copy.deepcopy(stateParent)
 
 	def getMatrixArray( self ):
 		return self.matrix.matrix
