@@ -28,7 +28,7 @@ class 	State:
 		return self.parent
 
 	def setStateParent( self, stateParent ):
-		# self.countParent += 1
+		self.countParent += 1
 		self.parent = stateParent
 
 	def getMatrixArray( self ):

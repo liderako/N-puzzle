@@ -170,4 +170,4 @@ def 	createMatrix(list):
 
 resultRead = readFile(sys.argv[1])
 m = convertInMatrix(resultRead)
-print m.matrix
+# print m.matrix
