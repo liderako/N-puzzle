@@ -69,18 +69,22 @@ def check_solve(matrix):
     while (True):
         if check_row_right(matrix,row,column,size - j):
             if flag:
+                print "one"
                 return (True)
             return (False)
         if check_column_down(matrix,row,size - i,size - j):
             if flag:
+                print "two"
                 return (True)
             return (False)
         if check_row_left(matrix,size - i,size - i,j):
             if flag:
+                print "three"
                 return (True)
             return (False)
         if check_column_up(matrix,size - i,column,j):
             if flag:
+                print "four"
                 return (True)
             return (False)
         row += 1

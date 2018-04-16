@@ -10,42 +10,91 @@ class 	Astar:
 		self.rules = rules
 
 # Applies the algorithm A * to find the shortest path to the terminal state from the indicated.
+# return @param a sequence of states from a given state to a terminal state.
 	def 	search( self, startState ):
-		# return @param a sequence of states from a given state to a terminal state.
 		closeList = list()
 		openList = list()
 		openList.append( startState )
 		startState.setG( 0 )
-		startState.setH( self.rules.getH( startState ) )
+		startState.setH( self.rules.getH( startState ))
+		while (len(openList)!= 0):
+			current,i = self.getStateWithMinF(openList)
+			if 	self.rules.isTerminate(current):
+				return self.completeSolution(current)
+			openList.pop(i)
+			closeList.append(current) 
+			neighborsListState = self.rules.getNeighbors(current)
+			for next in neighborsListState:
+				if ((self.find(next, closeList)) == True):
+					continue
+				gScope = current.getG() + 1
+				# print gScope
+				isGBetter = False
+				if ((self.find(next, openList) == False)):
+					next.setH(self.rules.getH(next))
+					openList.append(next)
+					isGBetter = True		
+				else:
+					isGBetter = gScope <= next.getG()
+					# print "WTF"
+				if (isGBetter == True):
+					# print "ASDDAS"
+					next.setStateParent(copy.deepcopy(current))
+					next.setG(gScope)
+		return 0;
+ 
 
-		while ( len( openList ) != 0 ):
-			xState,i = self.getStateWithMinF( openList )
-			if self.rules.isTerminate( xState ):
-				# closedStates = len(closeList)
-				return self.completeSolution( xState )
-			openList.pop( i )
-			closeList.append( xState )
-			neighborsList = self.rules.getHeighbors( xState )
 
-#  Finds the vertex in the openList with the lowest weight value.
-	def 	getStateWithMinF( self, openList ):
-		print "getStateWithMinF"
-		min = -sys.maxsize - 1
-		res = State()
-		i = 0
-		for state in openList:
-			if state.getH() < min:
-				min = state.getH()
-				res = state
+	def 	find(self, state, listState):
+		res = 0
+		sizeLine = state.getMatrixObject().getSize()
+		size = sizeLine * sizeLine
+		s = state.getMatrixArray()
+		for currentState in listState:
+			res = 0
+			tmp = currentState.getMatrixArray()
+			i = 0
+			while (i < sizeLine):
+				j = 0
+				flagBreak = 0
+				while j < sizeLine:
+					if (s[i][j] == tmp[i][j]):
+						res += 1
+					else:
+						flagBreak = 1
+						break
+					j += 1
 				i += 1
-		return res, i
+				if (flagBreak == 1):
+					break 
+			if (res == size):
+				return True
+		return (False)
 
-# It is the sequence of states passed from the initial state to the final one.
+	def 	getStateWithMinF( self, openList ):
+		min = sys.maxsize - 1
+		i = 0
+		i_res = 0
+		res = State(Matrix(openList[0].getMatrixObject().getSize()))
+		for state in openList:
+			if state.getF() < min:
+				min = state.getF()
+				res = copy.deepcopy(state)
+				i_res = i
+			i += 1
+		return res, i_res
+
 	def 	completeSolution( self, terminate ):
-		pass
-
-startState = State()
-rules = Rules()
-
-a = Astar(rules)
-a.search(startState)
+		print "Solution"
+		print terminate.getMatrixArray()
+		print "Stepp"
+		print terminate.getStateParent().getMatrixArray()
+		print terminate.getStateParent().getStateParent().getMatrixArray()
+		print terminate.getStateParent().getStateParent().getStateParent().getMatrixArray()
+		# print terminate.countParent
+		# current = terminate.getStateParent()
+		# while (terminate.countParent != 0):
+			# tmp = current.getStateParent()
+			# print current.getMatrixArray()
+			# current = current.getStateParent()
+			# terminate.countParent -= 1

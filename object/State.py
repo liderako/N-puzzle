@@ -1,8 +1,13 @@
 from Matrix import *
+
 class 	State:
 
 	def __init__( self, matrix ):
 		self.matrix = matrix
+		self.g = 0
+		self.h = 0
+		self.f = 0
+		self.countParent = 0
 
 	def getG( self ):
 		return self.g;
@@ -20,10 +25,14 @@ class 	State:
 		self.g = g;
 
 	def getStateParent( self ):
-		return self.stateParent
+		return self.parent
 
 	def setStateParent( self, stateParent ):
-		self.stateParent = stateParent;
+		# self.countParent += 1
+		self.parent = stateParent
 
 	def getMatrixArray( self ):
 		return self.matrix.matrix
+
+	def getMatrixObject( self ):
+		return self.matrix
