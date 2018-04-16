@@ -24,7 +24,19 @@ astar = Astar(rules)
 	# print m2.getMatrix()
 
 a = astar.search(sOrigin)
-print a
+size = len(a)
+print "Count step", size
+print "Solution\n", a[0]
+print "Steps"
+
+i = size - 1
+step = 1
+while i >= 0:
+	print "step ", step, "\n", a[i]
+	i -=1
+	step += 1
+# for x in a:
+	# print x
 
 # a = State(Matrix(3))
 

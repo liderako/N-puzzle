@@ -17,38 +17,35 @@ class 	Astar:
 		openList.append( startState )
 		startState.setG( 0 )
 		startState.setH( self.rules.getH( startState ))
+		sizeLine = startState.getMatrixObject().getSize()
+		size = sizeLine * sizeLine
 		while (len(openList)!= 0):
 			current,i = self.getStateWithMinF(openList)
 			if 	self.rules.isTerminate(current):
-				return self.completeSolution(current)
+				listState = list()
+				return self.completeSolution(current,listState)
 			openList.pop(i)
 			closeList.append(current) 
 			neighborsListState = self.rules.getNeighbors(current)
 			for next in neighborsListState:
-				if ((self.find(next, closeList)) == True):
+				if ((self.find(next, closeList, size, sizeLine)) == True):
 					continue
 				gScope = current.getG() + 1
-				# print gScope
 				isGBetter = False
-				if ((self.find(next, openList) == False)):
+				if ((self.find(next, openList, size, sizeLine) == False)):
 					next.setH(self.rules.getH(next))
 					openList.append(next)
 					isGBetter = True		
 				else:
 					isGBetter = gScope <= next.getG()
-					# print "WTF"
 				if (isGBetter == True):
-					# print "ASDDAS"
-					next.setStateParent(copy.deepcopy(current))
+					next.setStateParent(current)
 					next.setG(gScope)
 		return 0;
  
 
 
-	def 	find(self, state, listState):
-		res = 0
-		sizeLine = state.getMatrixObject().getSize()
-		size = sizeLine * sizeLine
+	def 	find(self, state, listState, size, sizeLine):
 		s = state.getMatrixArray()
 		for currentState in listState:
 			res = 0
@@ -75,26 +72,17 @@ class 	Astar:
 		min = sys.maxsize - 1
 		i = 0
 		i_res = 0
-		res = State(Matrix(openList[0].getMatrixObject().getSize()))
 		for state in openList:
 			if state.getF() < min:
 				min = state.getF()
-				res = copy.deepcopy(state)
 				i_res = i
 			i += 1
+		res = copy.deepcopy(openList[i_res])
 		return res, i_res
 
-	def 	completeSolution( self, terminate ):
-		print "Solution"
-		print terminate.getMatrixArray()
-		print "Stepp"
-		print terminate.getStateParent().getMatrixArray()
-		print terminate.getStateParent().getStateParent().getMatrixArray()
-		print terminate.getStateParent().getStateParent().getStateParent().getMatrixArray()
-		# print terminate.countParent
-		# current = terminate.getStateParent()
-		# while (terminate.countParent != 0):
-			# tmp = current.getStateParent()
-			# print current.getMatrixArray()
-			# current = current.getStateParent()
-			# terminate.countParent -= 1
+	def 	completeSolution( self, terminate, listState ):
+		listState.append(terminate.getMatrixArray())
+		if (terminate.countParent != 0):
+			return self.completeSolution(terminate.getStateParent(), listState)
+		else:
+			return listState
