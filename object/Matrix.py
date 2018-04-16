@@ -23,5 +23,7 @@ class Matrix:
 		self.matrix[row + 1][column] = buf
 	def setMatrix(self, matrix):
 		self.matrix = matrix
+	def getMatrix(self):
+		return self.matrix
 	def getSize(self):
 		return self.size

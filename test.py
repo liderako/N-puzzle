@@ -15,6 +15,14 @@ sOrigin = State(m)
 rules = Rules(sOrigin)
 astar = Astar(rules)
 
+# m1 = Matrix(3)
+# m3 =/ Matrix(3)
+# m2 = sOrigin.getMatrixObject()
+# 
+# if m1.getMatrix() in m2.getMatrix()) == True:
+	# print m1.getMatrix()
+	# print m2.getMatrix()
+
 a = astar.search(sOrigin)
 print a
 

@@ -7,6 +7,7 @@ class 	State:
 		self.g = 0
 		self.h = 0
 		self.f = 0
+		self.countParent = 0
 
 	def getG( self ):
 		return self.g;
@@ -27,7 +28,8 @@ class 	State:
 		return self.parent
 
 	def setStateParent( self, stateParent ):
-		self.parent = copy.deepcopy(stateParent)
+		# self.countParent += 1
+		self.parent = stateParent
 
 	def getMatrixArray( self ):
 		return self.matrix.matrix

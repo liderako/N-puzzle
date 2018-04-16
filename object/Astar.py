@@ -16,7 +16,7 @@ class 	Astar:
 		openList = list()
 		openList.append( startState )
 		startState.setG( 0 )
-		startState.setH( self.rules.getH( startState ) )
+		startState.setH( self.rules.getH( startState ))
 		while (len(openList)!= 0):
 			current,i = self.getStateWithMinF(openList)
 			if 	self.rules.isTerminate(current):
@@ -27,23 +27,21 @@ class 	Astar:
 			for next in neighborsListState:
 				if ((self.find(next, closeList)) == True):
 					continue
+				gScope = current.getG() + 1
+				# print gScope
+				isGBetter = False
 				if ((self.find(next, openList) == False)):
-					next.setH(self.rules.getH(copy.deepcopy(next)))
-					openList.append(next)		
-				gScope = current.getG() + self.rules.getDistance(copy.deepcopy(current), copy.deepcopy(next))
-				print self.rules.getDistance(copy.deepcopy(next), copy.deepcopy(current))
-	
-				if gScope >= next.getG():
-					continue
-				print "WTF"
-				next.setG(gScope)
-				next.setStateParent(current)
-				# neighbor.parent = current
-				# print "dasdas"
-				# print neighbor.parent.getMatrixArray()
-				# print neighbor.getStateParent()
+					next.setH(self.rules.getH(next))
+					openList.append(next)
+					isGBetter = True		
+				else:
+					isGBetter = gScope <= next.getG()
+					# print "WTF"
+				if (isGBetter == True):
+					# print "ASDDAS"
+					next.setStateParent(copy.deepcopy(current))
+					next.setG(gScope)
 		return 0;
-
  
 
 
@@ -58,11 +56,17 @@ class 	Astar:
 			i = 0
 			while (i < sizeLine):
 				j = 0
+				flagBreak = 0
 				while j < sizeLine:
 					if (s[i][j] == tmp[i][j]):
 						res += 1
+					else:
+						flagBreak = 1
+						break
 					j += 1
 				i += 1
+				if (flagBreak == 1):
+					break 
 			if (res == size):
 				return True
 		return (False)
@@ -73,7 +77,7 @@ class 	Astar:
 		i_res = 0
 		res = State(Matrix(openList[0].getMatrixObject().getSize()))
 		for state in openList:
-			if state.getF() <= min:
+			if state.getF() < min:
 				min = state.getF()
 				res = copy.deepcopy(state)
 				i_res = i
@@ -81,7 +85,16 @@ class 	Astar:
 		return res, i_res
 
 	def 	completeSolution( self, terminate ):
-		print "WTF"
+		print "Solution"
 		print terminate.getMatrixArray()
-		# terminate.getStateParent()
-		# print a.getMatrixArray()
+		print "Stepp"
+		print terminate.getStateParent().getMatrixArray()
+		print terminate.getStateParent().getStateParent().getMatrixArray()
+		print terminate.getStateParent().getStateParent().getStateParent().getMatrixArray()
+		# print terminate.countParent
+		# current = terminate.getStateParent()
+		# while (terminate.countParent != 0):
+			# tmp = current.getStateParent()
+			# print current.getMatrixArray()
+			# current = current.getStateParent()
+			# terminate.countParent -= 1
