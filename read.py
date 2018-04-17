@@ -1,9 +1,6 @@
 import sys
 import copy
 from object.Matrix import *
-# from libft.Error import *
-# from libft.readFile import *
-# from libft.isInt import *
 
 def 	Error(string):
 	print string
@@ -84,6 +81,8 @@ def 	validationSizeLineHeight(sizeMatrix, string):
 			elem = c.split(' ')
 			if (y > sizeMatrix):
 				Error("Too big hight matrix")
+	if (y < sizeMatrix):
+		Error("size y != size map")
 
 def 	validationSizeLineWeight(sizeMatrix, string):
 	start = 0

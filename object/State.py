@@ -1,4 +1,5 @@
 from Matrix import *
+import hashlib
 
 class 	State:
 
@@ -8,31 +9,51 @@ class 	State:
 		self.h = 0
 		self.f = 0
 		self.countParent = 0
+		self.hash = ""
+		self.mathHash()
 
 	def getG( self ):
-		return self.g;
+		return ( self.g )
 
 	def getF( self ):
-		return self.g + self.h;
+		return ( self.g + self.h )
 
 	def getH( self ):
-		return self.h
+		return ( self.h )
 
 	def setH( self, h ):
-		self.h = h;
+		self.h = h
 
 	def setG( self, g ):
-		self.g = g;
+		self.g = g
 
 	def getStateParent( self ):
-		return self.parent
+		return ( self.parent )
 
 	def setStateParent( self, stateParent ):
 		self.countParent += 1
 		self.parent = stateParent
 
 	def getMatrixArray( self ):
-		return self.matrix.matrix
+		return ( self.matrix.matrix )
 
 	def getMatrixObject( self ):
-		return self.matrix
+		return ( self.matrix )
+
+	def __eq__( self, state ):
+		return ( self.hash == state.hash )
+
+	def 	mathHash( self ):
+		hash = hashlib.md5()
+		size = self.matrix.size
+		i = 0
+		string = ""
+		array = self.getMatrixArray()
+		while ( i < size ):
+			j = 0
+			while j < size:
+				string = string + str( array[i][j] )
+				j += 1
+			i += 1
+		hash.update( string )
+		self.hash = hash.hexdigest()
