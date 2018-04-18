@@ -1,10 +1,10 @@
 from Rules import *
 
-class RulesG(Rules):
+class RulesNoG(Rules):
 
     def __init__( self, startState):
         Rules.__init__(self, startState)
 
     def getDistance( self ):
-        return (1)
+        return (0)
         

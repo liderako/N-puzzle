@@ -1,6 +1,5 @@
 import hashlib
 import sys
-# from abc import ABCMeta, abstractmethod, abstractproperty
 from object.Matrix import *
 import numpy as np
 from is_terminate import *
@@ -8,10 +7,10 @@ from fcoefficientsearch import *
 from read import *
 from object.Rules import *
 from object.RulesG import *
+from object.RulesNoG import *
 from object.State import *
 from object.Astar import *
 
-# try:
 if (len(sys.argv) != 3):
 	print "Usage python main.py maps/anyoneMaps [-g=true or -g=false]"
 	sys.exit(1)
@@ -24,7 +23,7 @@ m = convertInMatrix(resultRead)
 sOrigin = State(m)
 
 if (sys.argv[2] == "-g=true"):
-	rules = Rules(sOrigin)
+	rules = RulesNoG(sOrigin)
 else:
 	rules = RulesG(sOrigin)
 
@@ -42,5 +41,3 @@ while i >= 0:
 	print "step ", step, "\n", a[i]
 	i -=1
 	step += 1
-# except:
-	# pass # Exit

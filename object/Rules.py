@@ -2,6 +2,7 @@ import sys
 import copy
 from State import *
 from fcoefficientsearch import *
+from linearconflict import *
 from is_terminate import *
 from IRules import *
 
@@ -76,9 +77,6 @@ class   Rules(IRules):
             stateList.append( self.copyState( stateCurrent, indZero, "left" ) )
         return ( stateList )
 
-    def getDistance( self ):
-        return ( 0 )
-
     def getH( self, state ):
         def getIndex( matrix, digit ):
             for row, j in enumerate( matrix ):
@@ -92,8 +90,9 @@ class   Rules(IRules):
             indSt = getIndex( state.getMatrixArray(), digit )
             indCor = getIndex( self.stateCorrect.getMatrixArray(), digit )
             h += abs( indSt[0] - indCor[0] ) + abs( indSt[1] - indCor[1] )
-        return ( h )
-
+            # print getLinearCoef( self.stateCorrect.getMatrixArray(), state.getMatrixArray() )
+        # return ( h + getLinearCoef( self.stateCorrect.getMatrixArray(), state.getMatrixArray() ))
+        return (h)
     def isTerminate( self, state ):
         return ( self.find( state, self.stateCorrect ))
 
