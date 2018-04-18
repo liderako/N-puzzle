@@ -10,6 +10,8 @@ class 	Astar:
 	def 	__init__( self, rules ):
 		self.closedStates = 0
 		self.rules = rules
+		self.totalSizeState = 0
+		self.totalMaxSizeState = 0
 
 # Applies the algorithm A * to find the shortest path to the terminal state from the indicated.
 # return @param a sequence of states from a given state to a terminal state.
@@ -37,6 +39,10 @@ class 	Astar:
 				if (( self.find( next, openList )) == False ):
 					next.setH( self.rules.getH( next ))
 					openList.append( next )
+					self.totalSizeState += 1
+					count = len(openList)
+					if (count > self.totalMaxSizeState):
+						self.totalMaxSizeState = count
 					isGBetter = True		
 				else:
 					isGBetter = gScope <= next.getG()

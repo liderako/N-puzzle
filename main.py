@@ -22,7 +22,7 @@ resultRead = readFile(sys.argv[1])
 m = convertInMatrix(resultRead)
 sOrigin = State(m)
 
-if (sys.argv[2] == "-g=true"):
+if (sys.argv[2] == "-g=false"):
 	rules = RulesNoG(sOrigin)
 else:
 	rules = RulesG(sOrigin)
@@ -30,14 +30,15 @@ else:
 astar = Astar(rules)
 
 a = astar.search(sOrigin)
-print a
 size = len(a)
-print "Count step", size - 1
-print "Solution\n", a[0]
 print "Steps"
 i = size - 1
 step = 1
-while i >= 0:
+while i > 0:
 	print "step ", step, "\n", a[i]
 	i -=1
 	step += 1
+print "Solution\n", a[0]
+print "Total number of states: ",astar.totalSizeState
+print "Max number of states: ", astar.totalMaxSizeState  
+print "Count step move", size - 1
