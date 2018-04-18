@@ -1,7 +1,7 @@
-from abc import ABCMetas
+from abc import ABCMeta, abstractmethod, abstractproperty
 
-class IRules:
-
+class IRules():
+	__metaclass__=ABCMeta
 	#  Returns a list of states that can be migrated from the status field.
 	#  @param currentState - The current state for which the neighboring are revealed
 	@abstractmethod

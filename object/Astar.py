@@ -1,5 +1,6 @@
 import sys
 from Rules import *
+from RulesG import *
 from State import *
 
 class 	Astar:
@@ -17,7 +18,7 @@ class 	Astar:
 		openList.append( startState )
 		startState.setG( 0 )
 		startState.setH( self.rules.getH( startState ))
-
+		startState.mathHash()
 		while ( len( openList )!= 0 ):
 			current,i = self.getStateWithMinF( openList )
 			if 	self.rules.isTerminate( current ):
@@ -32,7 +33,7 @@ class 	Astar:
 					continue
 				gScope = current.getG() + self.rules.getDistance()
 				isGBetter = False
-				if (( self.find( next, openList ) == False )):
+				if (( self.find( next, openList )) == False ):
 					next.setH( self.rules.getH( next ))
 					openList.append( next )
 					isGBetter = True		

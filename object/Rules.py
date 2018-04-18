@@ -3,13 +3,14 @@ import copy
 from State import *
 from fcoefficientsearch import *
 from is_terminate import *
+from IRules import *
 
-class   Rules:
-    def __init__( self, startState, gOn ):
+class   Rules(IRules):
+    def __init__( self, startState):
         m = Matrix( startState.matrix.size )
         m.setMatrix( fill_matrix( startState.getMatrixArray() ))
         self.stateCorrect = State( m )
-        self.gOn = gOn
+        self.stateCorrect.mathHash()
 
     def copyState( self, stateCurrent, indZero, key ):
         a = State( copy.deepcopy( stateCurrent.getMatrixObject() ))
@@ -76,8 +77,6 @@ class   Rules:
         return ( stateList )
 
     def getDistance( self ):
-        if ( self.gOn == True ):
-            return ( 1 )
         return ( 0 )
 
     def getH( self, state ):
@@ -99,6 +98,6 @@ class   Rules:
         return ( self.find( state, self.stateCorrect ))
 
     def     find( self, state, stateCorrect ):
-        if ( state.hash == stateCorrect.hash ):
+        if ( state == stateCorrect ):
             return ( True )
         return ( False )

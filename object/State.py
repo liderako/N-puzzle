@@ -10,7 +10,6 @@ class 	State:
 		self.f = 0
 		self.countParent = 0
 		self.hash = ""
-		self.mathHash()
 
 	def getG( self ):
 		return ( self.g )
@@ -44,7 +43,7 @@ class 	State:
 		return ( self.hash == state.hash )
 
 	def 	mathHash( self ):
-		hash = hashlib.md5()
+		hashObj = hashlib.md5()
 		size = self.matrix.size
 		i = 0
 		string = ""
@@ -55,5 +54,5 @@ class 	State:
 				string = string + str( array[i][j] )
 				j += 1
 			i += 1
-		hash.update( string )
-		self.hash = hash.hexdigest()
+		hashObj.update( string )
+		self.hash = hashObj.hexdigest()
