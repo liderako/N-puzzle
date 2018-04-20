@@ -8,7 +8,7 @@ from IRules import *
 from Manhattan import *
 
 class   Rules(IRules):
-    def __init__( self, startState, heuristic):
+    def __init__( self, startState, heuristic ):
         m = Matrix( startState.matrix.size )
         m.setMatrix( fill_matrix( startState.getMatrixArray() ))
         self.stateCorrect = State( m )
