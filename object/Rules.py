@@ -8,12 +8,13 @@ from IRules import *
 from Manhattan import *
 
 class   Rules(IRules):
-    def __init__( self, startState, heuristic ):
+    def __init__( self, startState, heuristic, g):
         m = Matrix( startState.matrix.size )
         m.setMatrix( fill_matrix( startState.getMatrixArray() ))
         self.stateCorrect = State( m )
         self.stateCorrect.mathHash()
         self.heuristic = heuristic
+        self.g = g
 
     def copyState( self, stateCurrent, indZero, key ):
         a = State( copy.deepcopy( stateCurrent.getMatrixObject() ))
@@ -84,6 +85,9 @@ class   Rules(IRules):
 
     def isTerminate( self, state ):
         return ( self.find( state, self.stateCorrect ))
+
+    def getDistance( self ):
+        return (self.g)
 
     def     find( self, state, stateCorrect ):
         if ( state == stateCorrect ):

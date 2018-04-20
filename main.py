@@ -6,21 +6,13 @@ from is_terminate import *
 from fcoefficientsearch import *
 from read import *
 from object.Rules import *
-from object.RulesG import *
-from object.RulesNoG import *
 from object.State import *
 from object.Astar import *
 from object.Manhattan import *
 from object.ManhattanAndLinearConflict import *
+from object.Misplaced import *
 
-stringUsage = "Usage python main.py maps/anyoneMaps [-g=true or -g=false] [-m or -ml]"
-
-if (sys.argv[2] == "--help" or sys.argv[2] == "-h"):
-	print "gCoef on or off"
-	print "-g=[true or false]"
-	print "Manhattan distance -m"
-	print "Manhattan distance + linearconflict -ml"
-	sys.exit(1)
+stringUsage = "Usage python main.py maps/anyoneMaps [-g=true or -g=false] [-m or -ml or -mi]"
 
 if (len(sys.argv) != 4):
 	print stringUsage
@@ -28,7 +20,7 @@ if (len(sys.argv) != 4):
 if (sys.argv[2] != "-g=true" and sys.argv[2] != "-g=false"):
 	print stringUsage
 	sys.exit(1)
-if (sys.argv[3] != "-m" and sys.argv[3] != '-ml'):
+if (sys.argv[3] != "-m" and sys.argv[3] != '-ml' and sys.argv[3] != "-mi"):
 	print stringUsage
 	sys.exit(1)
 
@@ -36,17 +28,17 @@ resultRead = readFile(sys.argv[1])
 m = convertInMatrix(resultRead)
 sOrigin = State(m)
 
-# manhattan = Manhattan()
-
 if (sys.argv[3] == "-m"):
 	heuristic = Manhattan()
 elif (sys.argv[3] == "-ml"):
 	heuristic = ManhattanAndLinearConflict(Manhattan())
+elif (sys.argv[3] == "-mi"):
+	heuristic = Misplaced()
 
 if (sys.argv[2] == "-g=false"):
-	rules = RulesNoG(sOrigin, heuristic)
+	rules = Rules(sOrigin, heuristic, 0)
 else:
-	rules = RulesG(sOrigin, heuristic)
+	rules = Rules(sOrigin, heuristic, 1)
 
 astar = Astar(rules)
 

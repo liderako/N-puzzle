@@ -94,11 +94,3 @@ def fill_matrix(matrix_in):
             column = row - 1
         j += 1
     return (matrix)
-
-def g_coef_count(matrix_correct,matrix_current):
-    g_coef = 0    
-    for i,j in enumerate(matrix_correct):
-                for k,l in enumerate(j):
-                        if matrix_correct[i][k] != matrix_current[i][k]:
-                            g_coef += 1
-    return g_coef

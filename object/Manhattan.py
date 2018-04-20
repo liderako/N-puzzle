@@ -5,7 +5,7 @@ from State import *
 
 class   Manhattan(IHeuristic):
 
-    def getH( self, state, stateCorrect):
+    def getH( self, state, stateCorrect ):
         def getIndex( matrix, digit ):
             for row, j in enumerate( matrix ):
                 for column,l in enumerate( j ):
@@ -19,4 +19,3 @@ class   Manhattan(IHeuristic):
             indCor = getIndex( stateCorrect.getMatrixArray(), digit )
             h += abs( indSt[0] - indCor[0] ) + abs( indSt[1] - indCor[1] )
         return (h)
-# return ( h + getLinearCoef( self.stateCorrect.getMatrixArray(), state.getMatrixArray() ))

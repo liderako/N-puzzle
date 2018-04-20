@@ -1,7 +1,5 @@
 import sys
 from Rules import *
-from RulesG import *
-from RulesNoG import *
 from State import *
 
 class 	Astar:
