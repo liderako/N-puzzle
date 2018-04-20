@@ -12,16 +12,16 @@ class IRules():
 	
 	# Returns the distance between the specified states.
 	@abstractmethod
-	def getDistance( self, stateA, stateB ):
+	def getDistance( self ):
 		pass
 
 	#  Calculates a heuristic estimate of the distance from the specified state to the final.
 	@abstractmethod
-	def getH( state ):
+	def getH( self, state ):
 		pass
 
 	# Checks whether the state is finite.
 	@abstractmethod
-	def isTerminate( state ):
+	def isTerminate( self, state ):
 		# return bool
 		pass
