@@ -60,7 +60,7 @@ class 	Astar:
 		i = 0
 		i_res = 0
 		for state in openList:
-			if state.getF() < min:
+			if state.getF() <= min:
 				min = state.getF()
 				i_res = i
 			i += 1

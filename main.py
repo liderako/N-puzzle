@@ -11,6 +11,8 @@ from object.Astar import *
 from object.Manhattan import *
 from object.ManhattanAndLinearConflict import *
 from object.Misplaced import *
+from object.Swap import *
+from object.TilesOut import *
 
 stringUsage = "Usage python main.py maps/anyoneMaps [-g=true or -g=false] [-m or -ml or -mi]"
 
@@ -20,7 +22,7 @@ if (len(sys.argv) != 4):
 if (sys.argv[2] != "-g=true" and sys.argv[2] != "-g=false"):
 	print stringUsage
 	sys.exit(1)
-if (sys.argv[3] != "-m" and sys.argv[3] != '-ml' and sys.argv[3] != "-mi"):
+if (sys.argv[3] != "-m" and sys.argv[3] != '-ml' and sys.argv[3] != "-mi" and sys.argv[3] != "-to" and sys.argv[3] != "-swap"):
 	print stringUsage
 	sys.exit(1)
 
@@ -34,6 +36,10 @@ elif (sys.argv[3] == "-ml"):
 	heuristic = ManhattanAndLinearConflict(Manhattan())
 elif (sys.argv[3] == "-mi"):
 	heuristic = Misplaced()
+elif (sys.argv[3] == "-to"):
+	heuristic = TilesOut(Manhattan())
+elif (sys.argv[3] == "-swap"):
+	heuristic = Swap()
 
 if (sys.argv[2] == "-g=false"):
 	rules = Rules(sOrigin, heuristic, 0)
