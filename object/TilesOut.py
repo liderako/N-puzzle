@@ -9,8 +9,8 @@ from ManhattanAndLinearConflict import *
 
 class   TilesOut(ManhattanAndLinearConflict):
 
-    def __init__( self, manhattan ):
-        ManhattanAndLinearConflict.__init__(self, manhattan)
+    def __init__( self, manhattan, stateCorrect):
+        ManhattanAndLinearConflict.__init__(self, manhattan, stateCorrect)
 
     def getTilesOutCoef( self, stateCorrect, stateCurrent ):
         dictRight = self.getIndexRightState( stateCorrect )
@@ -25,5 +25,3 @@ class   TilesOut(ManhattanAndLinearConflict):
     
     def getH( self, state, stateCorrect ):
         return ( ManhattanAndLinearConflict.getH(self, state, stateCorrect ) + self.getTilesOutCoef(stateCorrect.getMatrixArray(), state.getMatrixArray() ))
-
-# Rules.__init__(self, startState)

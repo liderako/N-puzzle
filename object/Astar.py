@@ -24,6 +24,10 @@ class 	Astar:
 			current,i = self.getStateWithMinF( openList )
 			if 	self.rules.isTerminate( current ):
 				listState = list()
+				# print "g",
+				# print len(openList)
+				# print len(closeList)
+				# return (0)
 				return ( self.completeSolution( current, listState ))
 			openList.pop( i )
 			closeList.append( current )
@@ -66,9 +70,21 @@ class 	Astar:
 			i += 1
 		return ( openList[i_res], i_res )
 
-	def 	completeSolution( self, terminate, listState ):
-		listState.append( terminate.getMatrixArray())
-		if ( terminate.countParent != 0 ):
-			return ( self.completeSolution( terminate.getStateParent(), listState ))
-		else:
-			return ( listState )
+	def 	completeSolution( self, terminate, listState):
+			listState.append(terminate.getMatrixArray())
+			tmp = terminate.getStateParent()
+			while tmp.countParent != 0:
+				listState.append(tmp.getMatrixArray())
+				tmp = tmp.getStateParent()
+			return (listState)
+
+
+
+
+
+
+
+
+
+
+

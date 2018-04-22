@@ -4,6 +4,8 @@ from Matrix import *
 from State import *
 
 class   Manhattan(IHeuristic):
+    def __init__(self, state):
+        self.max = len( state.getMatrixArray() ) * len( state.getMatrixArray() )
 
     def getH( self, state, stateCorrect ):
         def getIndex( matrix, digit ):
@@ -11,10 +13,8 @@ class   Manhattan(IHeuristic):
                 for column,l in enumerate( j ):
                     if l == digit:
                         return ( row, column )
-        size = len( state.getMatrixArray( ) )
-        max = size * size
         h = 0
-        for digit in range( max ):
+        for digit in range( self.max ):
             indSt = getIndex( state.getMatrixArray(), digit )
             indCor = getIndex( stateCorrect.getMatrixArray(), digit )
             h += abs( indSt[0] - indCor[0] ) + abs( indSt[1] - indCor[1] )
