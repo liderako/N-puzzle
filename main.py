@@ -42,6 +42,7 @@ stringUsage.append(Bcolors.OKGREEN + "-ml == Manhattan heuristic + LinearConflic
 stringUsage.append(Bcolors.OKGREEN + "-to == Manhattan heuristic + LinearConflict heuristic + TilesOut heuristic" + Bcolors.ENDC)
 stringUsage.append(Bcolors.OKGREEN + "-mi == Misplaced heuristic" + Bcolors.ENDC)
 stringUsage.append(Bcolors.OKGREEN + "-f == no steps " + Bcolors.ENDC)
+stringUsage.append(Bcolors.OKGREEN + "-g if == false then uniform-cost else greedy searches" + Bcolors.ENDC)
 
 if (len(sys.argv) != 5):
     printUsage(stringUsage)
@@ -87,13 +88,12 @@ size = len(a)
 i = size - 1
 step = 1
 
-if (sys.argv[4] != "-f=false"):
-    while i > 0:
-	   if (i != 0):
-		  print Bcolors.OKYELLOW, "step" + Bcolors.ENDC, Bcolors.OKRED, step, Bcolors.ENDC
-		  printArray(a[i])
-	   i -= 1
-	   step += 1
+while i > 0:
+	if (i != 0 and sys.argv[4] != "-f=false"):
+		print Bcolors.OKYELLOW, "step" + Bcolors.ENDC, Bcolors.OKRED, step, Bcolors.ENDC
+		printArray(a[i])
+	i -= 1
+	step += 1
 print Bcolors.OKGREEN, "Solution:", Bcolors.ENDC
 printArray(a[0])
 print Bcolors.OKBLUE, "Total number of states:", Bcolors.ENDC, astar.totalSizeState
@@ -101,4 +101,4 @@ print Bcolors.OKBLUE, "Max number of states:", Bcolors.ENDC, astar.totalMaxSizeS
 if (astar.totalMaxSizeState == 0 and astar.totalSizeState == 0):
 	print Bcolors.OKBLUE, "Count step move:", Bcolors.ENDC, 0
 else:
-	print Bcolors.OKBLUE, "Count step move:", Bcolors.ENDC, step
+	print Bcolors.OKBLUE, "Count step move:", Bcolors.ENDC, size
