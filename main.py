@@ -41,7 +41,7 @@ stringUsage.append(Bcolors.OKGREEN + "-m == Manhattan heuristic" + Bcolors.ENDC)
 stringUsage.append(Bcolors.OKGREEN + "-ml == Manhattan heuristic + LinearConflict heuristic" + Bcolors.ENDC)
 stringUsage.append(Bcolors.OKGREEN + "-to == Manhattan heuristic + LinearConflict heuristic + TilesOut heuristic" + Bcolors.ENDC)
 stringUsage.append(Bcolors.OKGREEN + "-mi == Misplaced heuristic" + Bcolors.ENDC)
-stringUsage.append(Bcolors.OKGREEN + "-f == no steps " + Bcolors.ENDC)
+stringUsage.append(Bcolors.OKGREEN + "-f if true then no steps else steps will be print " + Bcolors.ENDC)
 stringUsage.append(Bcolors.OKGREEN + "-g if == false then uniform-cost else greedy searches" + Bcolors.ENDC)
 
 if (len(sys.argv) != 5):
@@ -89,7 +89,7 @@ i = size - 1
 step = 1
 
 while i > 0:
-	if (i != 0 and sys.argv[4] != "-f=false"):
+	if (i != 0 and sys.argv[4] != "-f=true"):
 		print Bcolors.OKYELLOW, "step" + Bcolors.ENDC, Bcolors.OKRED, step, Bcolors.ENDC
 		printArray(a[i])
 	i -= 1
