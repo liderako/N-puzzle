@@ -1,7 +1,5 @@
 import sys
 from Rules import *
-from RulesG import *
-from RulesNoG import *
 from State import *
 
 class 	Astar:
@@ -10,6 +8,8 @@ class 	Astar:
 	def 	__init__( self, rules ):
 		self.closedStates = 0
 		self.rules = rules
+		self.totalSizeState = 0
+		self.totalMaxSizeState = 0
 
 # Applies the algorithm A * to find the shortest path to the terminal state from the indicated.
 # return @param a sequence of states from a given state to a terminal state.
@@ -22,6 +22,7 @@ class 	Astar:
 		startState.mathHash()
 		while ( len( openList )!= 0 ):
 			current,i = self.getStateWithMinF( openList )
+			# print current.getMatrixArray()
 			if 	self.rules.isTerminate( current ):
 				listState = list()
 				return ( self.completeSolution( current, listState ))
@@ -37,6 +38,10 @@ class 	Astar:
 				if (( self.find( next, openList )) == False ):
 					next.setH( self.rules.getH( next ))
 					openList.append( next )
+					self.totalSizeState += 1
+					count = len(openList)
+					if (count > self.totalMaxSizeState):
+						self.totalMaxSizeState = count
 					isGBetter = True		
 				else:
 					isGBetter = gScope <= next.getG()
@@ -56,15 +61,27 @@ class 	Astar:
 		i = 0
 		i_res = 0
 		for state in openList:
-			if state.getF() < min:
+			if state.getF() <= min:
 				min = state.getF()
 				i_res = i
 			i += 1
 		return ( openList[i_res], i_res )
 
-	def 	completeSolution( self, terminate, listState ):
-		listState.append( terminate.getMatrixArray())
-		if ( terminate.countParent != 0 ):
-			return ( self.completeSolution( terminate.getStateParent(), listState ))
-		else:
-			return ( listState )
+	def 	completeSolution( self, terminate, listState):
+			listState.append(terminate.getMatrixArray())
+			tmp = terminate.getStateParent()
+			while tmp.countParent != 0:
+				listState.append(tmp.getMatrixArray())
+				tmp = tmp.getStateParent()
+			return (listState)
+
+
+
+
+
+
+
+
+
+
+

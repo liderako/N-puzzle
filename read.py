@@ -39,6 +39,8 @@ def 	deleteSpace(resultRead):
 	size = len(resultRead)
 	try:
 		for x in resultRead:
+			s = x.strip()
+			x = s
 			if ((len(x)) == 1 and x[0] == ' '):
 				pass
 			else:
@@ -150,6 +152,8 @@ def 	convertInMatrix(resultRead):
 
 def 	createMatrix(list):
 	m = Matrix(int(list[0]))
+	if (len(list) == 1): # last
+		Error("Error size map")
 	sizeX = len(list[1])
 	y = 0
 	x = 0
@@ -166,7 +170,3 @@ def 	createMatrix(list):
 				x += 1
 			y += 1
 	return m
-
-resultRead = readFile(sys.argv[1])
-m = convertInMatrix(resultRead)
-# print m.matrix
