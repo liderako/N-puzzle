@@ -3,13 +3,15 @@ import hashlib
 
 class 	State:
 
-	def __init__( self, matrix ):
+	def __init__( self, matrix, count=0):
 		self.matrix = matrix
 		self.g = 0
 		self.h = 0
 		self.f = 0
 		self.countParent = 0
 		self.hash = ""
+		if (count == 0):
+			self.parent = State(Matrix(1), 1)
 
 	def getG( self ):
 		return ( self.g )

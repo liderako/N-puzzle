@@ -152,6 +152,8 @@ def 	convertInMatrix(resultRead):
 
 def 	createMatrix(list):
 	m = Matrix(int(list[0]))
+	if (len(list) == 1): # last
+		Error("Error size map")
 	sizeX = len(list[1])
 	y = 0
 	x = 0

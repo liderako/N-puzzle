@@ -22,12 +22,9 @@ class 	Astar:
 		startState.mathHash()
 		while ( len( openList )!= 0 ):
 			current,i = self.getStateWithMinF( openList )
+			# print current.getMatrixArray()
 			if 	self.rules.isTerminate( current ):
 				listState = list()
-				# print "g",
-				# print len(openList)
-				# print len(closeList)
-				# return (0)
 				return ( self.completeSolution( current, listState ))
 			openList.pop( i )
 			closeList.append( current )
