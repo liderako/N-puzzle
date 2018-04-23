@@ -2,7 +2,6 @@ import sys
 import copy
 from State import *
 from fcoefficientsearch import *
-from linearconflict import *
 from is_terminate import *
 from IRules import *
 from Manhattan import *
