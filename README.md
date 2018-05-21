@@ -12,3 +12,6 @@ Rigor
 Algorithms & AI 
 Group & interpersonal 
 ```
+## :muscle: Authors
+* [**Anton Sviridov**](https://github.com/asvirido/)
+* [**Oleksii Borysenko**](https://github.com/oborys)
