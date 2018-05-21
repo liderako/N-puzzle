@@ -13,5 +13,5 @@ Algorithms & AI
 Group & interpersonal 
 ```
 ## :muscle: Authors
-* [**Antonio Sviridov**](https://github.com/asvirido/)
+* [**Antonio Sviridov**](https://github.com/liderako/)
 * [**Oleksii Borysenko**](https://github.com/oborys)
