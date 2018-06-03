@@ -11,6 +11,7 @@ Optimisation
 Rigor 
 Algorithms & AI 
 Group & interpersonal 
+Object-oriented programming 
 ```
 ## :muscle: Authors
 * [**Antonio Sviridov**](https://github.com/liderako/)
